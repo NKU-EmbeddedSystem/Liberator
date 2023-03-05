@@ -1,23 +1,28 @@
-## Ascetic
-Ascetic is an out-of-GPU-memory graph processing framework.
+## Liberator
+Liberator is an out-of-GPU-memory graph processing framework.
 
 #### Compilation
-To compile the Ascetic. You need have cmake, g++ and CUDA 11.0 toolkit. 
+To compile the Liberator. You need have cmake, g++ and CUDA 11.0 toolkit. 
 You should enter the project root dir. 
 Create a directory ie. cmake-build-debug. 
 Enter it and cmake .. and make to complile the project.
 
 #### Input graph formats
-Ascetic accepts the binary CSR format just like :
+Liberator accepts the binary CSR format just like :
 ```
 0 4 7 9
 1 2 3 4 2 3 4 3 4 5 6
 ```
-We will submit an elegant tool which could transfer txt format to CSR format soon.
+#### Data format converter
+There is a converter which can convert txt to CSR in the folder converter
 
 #### Running
 ```
-$ ./ptgraph --input /dataset/somedata --algo bfs --sourceNode 0
+$ ./ptgraph 
+--input datapath 
+--algo bfs 
+--sourceNode 0
+--model 7 or 0 (7 is Liberator and the 0 model is our previous work Ascetic )
 ```
 
 #### Publication
