@@ -14,15 +14,17 @@ Liberator accepts the binary CSR format just like :
 1 2 3 4 2 3 4 3 4 5 6
 ```
 #### Data format converter
-There is a converter which can convert txt to CSR in the folder converter
+There is a converter which can convert txt to CSR in the folder converter.
+.bcsr is for bfs and cc, .bcsc is for pr(pagerank) and .bwcsr is for sssp.
 
 #### Running
 ```
 $ ./ptgraph 
 --input datapath 
---algo bfs 
---sourceNode 0
+--type bfs (graph processing algorithm)
+--sourceNode 0 (only for bfs and sssp)
 --model 7 or 0 (7 is Liberator and the 0 model is our previous work Ascetic )
+--tetsTime n (the algorithm will excute n times)
 ```
 
 #### Publication
