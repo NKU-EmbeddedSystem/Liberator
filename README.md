@@ -6,6 +6,7 @@ To compile the Liberator. You need have cmake, g++ and CUDA 11.0 toolkit.
 You should enter the project root dir. 
 Create a directory ie. cmake-build-debug. 
 Enter it and cmake .. and make to complile the project.
+You might need to change the cuda path according to your environment in CMakeList.txt
 
 #### Input graph formats
 Liberator accepts the binary CSR format just like :
