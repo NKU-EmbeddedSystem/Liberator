@@ -444,7 +444,7 @@ void GraphMeta<EdgeType>::getMaxPartitionSize() {
     size_t totalMemory;
     size_t availMemory;
     cudaMemGetInfo(&availMemory, &totalMemory);
-    long reduceMem;
+    unsigned long reduceMem;
     if(algType==PR){
         reduceMem = (paramSize-2) * sizeof(SIZE_TYPE) * (long) vertexArrSize;
         reduceMem += sizeof(double) * 2 * (long)vertexArrSize;
@@ -452,10 +452,12 @@ void GraphMeta<EdgeType>::getMaxPartitionSize() {
     else
     reduceMem = paramSize * sizeof(SIZE_TYPE) * (long) vertexArrSize + vertexArrSize*sizeof(EDGE_POINTER_TYPE);
     
-    cout << "reduceMem " << reduceMem << " testNumNodes " << vertexArrSize << " edgeArrSize " << edgeArrSize << " ParamsSize " << paramSize
-         << endl;
+    cout << "reduceMem " << reduceMem  << " ParamsSize " << paramSize << endl;
+    cout << "availMemory " << availMemory << " totalMemory " << totalMemory << endl;     
+    cout << "available memory for edges "<< (availMemory - reduceMem) << " sizeof EdgeType is "<<sizeof(EdgeType)<<endl;
     total_gpu_size = (availMemory - reduceMem) / sizeof(EdgeType);
-
+    cout<<"total_gpu_size: "<<total_gpu_size<<endl;
+    //getchar();
     //float adviseK = (10 - (float) edgeListSize / (float) totalSize) / 9;
     //uint dynamicDataMax = edgeListSize * edgeSize -i
     
@@ -478,19 +480,22 @@ void GraphMeta<EdgeType>::getMaxPartitionSize() {
             }
             else
             max_partition_size = total_gpu_size;
+
             if (max_partition_size > edgeArrSize) {
                 max_partition_size = edgeArrSize;
+                cout<<"GPU fill all the edges!!!"<<endl;
             }
-            cout << "availMemory " << availMemory << " totalMemory " << totalMemory << endl;
-            printf("static memory is %ld totalGlobalMem is %ld, max static edge size is %ld\n gpu total edge size %ld \n multiprocessors %d adviseK %f\n",
+            
+            printf("static memory is %ld  max static edge size is %ld\n gpu total edge size %ld \n",
                 availMemory - reduceMem,
-                dev.totalGlobalMem, max_partition_size, total_gpu_size, dev.multiProcessorCount, adviseK);
+                max_partition_size, 
+                total_gpu_size);
             if (max_partition_size > UINT_MAX) {
                 printf("bigger than DIST_INFINITY\n");
                 max_partition_size = UINT_MAX;
             }
-            SIZE_TYPE temp = max_partition_size % fragmentSize;
-            max_partition_size = max_partition_size - temp;
+            //SIZE_TYPE temp = max_partition_size % fragmentSize;
+            //max_partition_size = max_partition_size - temp;
             max_static_node = 0;
             SIZE_TYPE edgesInStatic = 0;
             for (SIZE_TYPE i = 0; i < vertexArrSize; i++) {
@@ -507,27 +512,7 @@ void GraphMeta<EdgeType>::getMaxPartitionSize() {
 
             partOverloadSize = total_gpu_size - max_partition_size;
             overloadSize = edgeArrSize - edgesInStatic;
-    
-    // else {
-    //     max_partition_size = total_gpu_size;
-    //     if (max_partition_size > edgeArrSize) {
-    //             max_partition_size = edgeArrSize;
-    //     }
-    //     SIZE_TYPE temp = max_partition_size % fragmentSize;
-    //     max_partition_size = max_partition_size - temp;
-    //     max_static_node = 0;
-    //     SIZE_TYPE edgesInStatic = 0;
-    //         for (SIZE_TYPE i = 0; i < vertexArrSize; i++) {
-    //             if (nodePointers[i] < max_partition_size && (nodePointers[i] + degree[i] - 1) < max_partition_size) {
-    //                 isInStatic[i] = true;
-    //                 if (i > max_static_node) max_static_node = i;
-    //                 edgesInStatic += degree[i];
-    //             } else {
-    //                 isInStatic[i] = false;
-    //             }
-    //         }
-    //     overloadSize = edgeArrSize;
-    // }
+
     cout << " partOverloadSize " << partOverloadSize << " overloadSize " << overloadSize << endl;
     cout << " max staticnode is "<<max_static_node<<endl;
 }
