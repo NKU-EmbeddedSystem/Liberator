@@ -23,9 +23,9 @@ EDGE_POINTER_TYPE vertexArrSize, edgeArrSize;
 
 StaticRegionInfo getMaxPartionSize(int paramSize, unsigned long long edgeArrSize, EDGE_POINTER_TYPE vertexArrSize, EDGE_POINTER_TYPE* nodePointers, uint*degree,
                        bool* isInStatic){
-    uint max_partition_size;
-    uint max_static_node;
-    uint total_gpu_size;
+    unsigned long max_partition_size;
+    unsigned long max_static_node;
+    unsigned long total_gpu_size;
     uint fragmentSize = 4096;
     int deviceID;
     cudaDeviceProp dev{};
