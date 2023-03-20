@@ -494,8 +494,8 @@ void GraphMeta<EdgeType>::getMaxPartitionSize() {
                 printf("bigger than DIST_INFINITY\n");
                 max_partition_size = UINT_MAX;
             }
-            //SIZE_TYPE temp = max_partition_size % fragmentSize;
-            //max_partition_size = max_partition_size - temp;
+            unsigned long temp = max_partition_size % fragmentSize;
+            max_partition_size = max_partition_size - temp;
             max_static_node = 0;
             SIZE_TYPE edgesInStatic = 0;
             for (SIZE_TYPE i = 0; i < vertexArrSize; i++) {
