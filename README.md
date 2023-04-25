@@ -29,7 +29,7 @@ $ ./Liberator
 ```
 
 #### Publication
-[IEEE Transactions on Parallel and Distributed Systems 24 April 2023] Shiyang Li, Ruiqi Tang, Jingyu Zhu, Ziyi Zhao, Xiaoli Gong, Jin Zhang, Wen-wen Wang, and Pen-Chung Yew. Liberator: A Data Reuse Framework for Out-of-Memory Graph Computing on GPUs
+[IEEE Transactions on Parallel and Distributed Systems 24 April 2023 doi: DOI 10.1109/TPDS.2023.3268662] Shiyang Li, Ruiqi Tang, Jingyu Zhu, Ziyi Zhao, Xiaoli Gong, Jin Zhang, Wen-wen Wang, and Pen-Chung Yew. Liberator: A Data Reuse Framework for Out-of-Memory Graph Computing on GPUs. 
 
 
 
