@@ -2,7 +2,7 @@
 Liberator is an out-of-GPU-memory graph processing framework.
 
 #### Compilation
-To compile the Liberator. You need have cmake, g++ and CUDA 11.0 toolkit. 
+To compile the Liberator. You need have cmake, g++ and CUDA 11.4 toolkit. 
 You should enter the project root dir. 
 Create a directory ie. cmake-build-debug. 
 Enter it and cmake .. and make to complile the project.
@@ -20,7 +20,7 @@ There is a converter which can convert txt to CSR in the folder converter.
 
 #### Running
 ```
-$ ./ptgraph 
+$ ./Liberator 
 --input datapath 
 --type bfs (graph processing algorithm)
 --sourceNode 0 (only for bfs and sssp)
@@ -29,7 +29,7 @@ $ ./ptgraph
 ```
 
 #### Publication
-[ICPP'21] Ruiqi Tang, Ziyi Zhao, Kailun Wang, Xiaoli Gong, Jin Zhang, Wen-wen Wang, and Pen-Chung Yew. Ascetic: Enhancing Cross-Iterations Data Efficiency in Out-of-Memory Graph Processing on GPUs.
+[IEEE Transactions on Parallel and Distributed Systems 24 April 2023] Shiyang Li, Ruiqi Tang, Jingyu Zhu, Ziyi Zhao, Xiaoli Gong, Jin Zhang, Wen-wen Wang, and Pen-Chung Yew. Liberator: A Data Reuse Framework for Out-of-Memory Graph Computing on GPUs
 
 
 
