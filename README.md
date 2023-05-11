@@ -1,4 +1,4 @@
-## Liberator
+## Liberator: A Data Reuse Framework for Out-of-Memory Graph Computing on GPUs
 Liberator is an out-of-GPU-memory graph processing framework.
 
 #### Compilation
